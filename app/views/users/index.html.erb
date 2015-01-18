@@ -1,0 +1,32 @@
+<div class="nav-search">
+  <%= form_tag search_users_path, method: 'get' do %>
+  <span class="input-icon">
+    <%= text_field_tag :q, params[:q], placeholder: "Search ...", autocomplete: "off", class: "nav-search-input" %>
+    <i class="ace-icon fa fa-search nav-search-icon"></i>
+  </span>
+  <% end %>
+</div>
+
+<table>
+  <tr>
+    <th class="index name">Name</th>
+    <th class="intro">Intro</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr class="list">
+      <td class="name"><%= user.name %></td>
+      <td class="intro"><%= user.intro %></td>
+      <td class="action">
+        <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-trash-o delete-user"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<div class="new-user">
+  <%= link_to new_user_path do %>
+    <i class="fa fa-user"> New User</i>
+  <% end %>
+</div>
